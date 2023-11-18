@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import Mainheader from './Mainheader'
+import MainHeader from './MainHeader'
 import NavLinks from './NavLinks';
 import SideDrawer from './SideDrawer';
 import BackDrop from '../UIElements/Backdrop'
@@ -27,7 +27,7 @@ function MainNavigation() {
       </nav>
     </SideDrawer>
 
-    <Mainheader>
+    <MainHeader>
       <button className="main-navigation__menu-btn" onClick={openDrawerHandler}>
         <span />
         <span/>
@@ -39,7 +39,7 @@ function MainNavigation() {
       <nav className='main-navigation__header-nav'>
         <NavLinks />
       </nav>
-    </Mainheader>
+    </MainHeader>
     </React.Fragment>
   )
 };
