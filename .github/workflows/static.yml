@@ -30,6 +30,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Load Environment Variables
+        run: |
+          echo "VITE_GOOGLE_API_KEY=${{ secrets.VITE_GOOGLE_API_KEY }}" >> .env
+          echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> .env
+          echo "VITE_ASSET_URL=${{ secrets.VITE_ASSET_URL }}" >> .env
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
