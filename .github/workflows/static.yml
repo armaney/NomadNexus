@@ -28,29 +28,43 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Load environment variables from GitHub Secrets into .env
       - name: Load Environment Variables
         run: |
           echo "VITE_GOOGLE_API_KEY=${{ secrets.VITE_GOOGLE_API_KEY }}" >> .env
           echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> .env
           echo "VITE_ASSET_URL=${{ secrets.VITE_ASSET_URL }}" >> .env
+
+      # Set up Node.js environment and caching
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
+
+      # Install project dependencies
       - name: Install dependencies
         run: npm install
+
+      # Build the project
       - name: Build
         run: npm run build
+
+      # Configure GitHub Pages deployment
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
+
+      # Upload the build artifact to GitHub Pages
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist repository
-          path: './dist'
+          path: './dist' # Vite default build folder
+
+      # Deploy the artifact to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
