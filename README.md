@@ -10,3 +10,4 @@ Add a place:
 
 Your Place gets added:
 
+redpoly
